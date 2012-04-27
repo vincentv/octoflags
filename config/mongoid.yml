@@ -1,0 +1,6 @@
+development:
+  database: octoflags_development
+
+test:
+  database: echo_test
+

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bootstrap, from Twitter</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+      }
+    </style>
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href=images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  </head>
+
+  <body>
+
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="#">Web APIs Documentation</a>
+          <ul class="nav">
+            <li class="active"><a href="index.html">Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="sidebar">
+        <div class="well">
+          <h5>Available APIs</h5>
+          <ul>
+            
+              <li><a href="#raw-get-users/:username">users/:username [GET]</a></li>
+            
+              <li><a href="#raw-get-users/:username/flagged">users/:username/flagged [GET]</a></li>
+            
+              <li><a href="#raw-delete-users/:username/flagged/:owner/:project">users/:username/flagged/:owner/:project [DELETE]</a></li>
+            
+              <li><a href="#raw-put-users/:username/flagged/:owner/:project">users/:username/flagged/:owner/:project [PUT]</a></li>
+            
+          </ul>
+        </div>
+      </div>
+      <div class="content">
+        <div class="hero-unit">
+          <h1>Web APIs</h1>
+          <p>You will find on left, the list of all the web APIs offered by this app.</p>
+        </div>
+
+        
+          <div class="" id="raw-get-users/:username">
+            <div>
+              <h2>GET  /users/:username</h2>
+              
+              <p>This service provides a simple hello world implementation example.</p>
+              
+              
+                
+                  <h3>Required Params</h3>
+                  <ul>
+                     
+                      <li>
+                        <span class='label notice'>username</span> of type <span class='label success'>string</span>
+                        
+                           The name of the person to greet.&nbsp;
+                        
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                  
+                
+                
+                
+              </div>
+
+              <div>
+              
+                <h3>Response description</h3>
+                
+                    <h6>Properties:</h6><ul><li><span class='label notice'>username</span> of type <span class='label success'>string</span>  The name of the person to greet.</li></ul>
+                
+                
+              </ul>
+              <h4>Response example</h4>
+              <p><code>{"username":"string"}</code></p>
+            
+          </div>
+
+        </div>
+        <hr>
+      
+          <div class="" id="raw-get-users/:username/flagged">
+            <div>
+              <h2>GET  /users/:username/flagged</h2>
+              
+              <p>This service provides a simple hello world implementation example.</p>
+              
+              
+                
+                  <h3>Required Params</h3>
+                  <ul>
+                     
+                      <li>
+                        <span class='label notice'>username</span> of type <span class='label success'>string</span>
+                        
+                           The name of the person to greet.&nbsp;
+                        
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                  
+                
+                
+                
+              </div>
+
+              <div>
+              
+                <h3>Response description</h3>
+                
+                    <h6>Properties:</h6><ul><li><span class='label notice'>username</span> of type <span class='label success'>string</span>  The name of the person to greet.</li></ul>
+                
+                
+              </ul>
+              <h4>Response example</h4>
+              <p><code>{"username":"string"}</code></p>
+            
+          </div>
+
+        </div>
+        <hr>
+      
+          <div class="" id="raw-delete-users/:username/flagged/:owner/:project">
+            <div>
+              <h2>DELETE  /users/:username/flagged/:owner/:project</h2>
+              
+              <p>This service provides a simple hello world implementation example.</p>
+              
+              
+                
+                  <h3>Required Params</h3>
+                  <ul>
+                     
+                      <li>
+                        <span class='label notice'>username</span> of type <span class='label success'>string</span>
+                        
+                        
+                        
+                      </li>
+                       
+                      <li>
+                        <span class='label notice'>owner</span> of type <span class='label success'>string</span>
+                        
+                           The name of the project owner.&nbsp;
+                        
+                        
+                        
+                      </li>
+                       
+                      <li>
+                        <span class='label notice'>project</span> of type <span class='label success'>string</span>
+                        
+                           The name of the project.&nbsp;
+                        
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                  
+                
+                
+                
+              </div>
+
+              <div>
+              
+                <h3>Response description</h3>
+                
+                    <h6>Properties:</h6><ul><li><span class='label notice'>username</span> of type <span class='label success'>string</span>  The name of the person to greet.</li><li><span class='label notice'>owner</span> of type <span class='label success'>string</span>  The name of the person to greet.</li><li><span class='label notice'>project</span> of type <span class='label success'>string</span>  The name of the person to greet.</li></ul>
+                
+                
+              </ul>
+              <h4>Response example</h4>
+              <p><code>{"username":"string","owner":"string","project":"string"}</code></p>
+            
+          </div>
+
+        </div>
+        <hr>
+      
+          <div class="" id="raw-put-users/:username/flagged/:owner/:project">
+            <div>
+              <h2>PUT  /users/:username/flagged/:owner/:project</h2>
+              
+              <p>This service provides a simple hello world implementation example.</p>
+              
+              
+                
+                  <h3>Required Params</h3>
+                  <ul>
+                     
+                      <li>
+                        <span class='label notice'>username</span> of type <span class='label success'>string</span>
+                        
+                        
+                        
+                      </li>
+                       
+                      <li>
+                        <span class='label notice'>owner</span> of type <span class='label success'>string</span>
+                        
+                           The name of the project owner.&nbsp;
+                        
+                        
+                        
+                      </li>
+                       
+                      <li>
+                        <span class='label notice'>project</span> of type <span class='label success'>string</span>
+                        
+                           The name of the project.&nbsp;
+                        
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                  
+                
+                
+                
+              </div>
+
+              <div>
+              
+                <h3>Response description</h3>
+                
+                    <h6>Properties:</h6><ul><li><span class='label notice'>username</span> of type <span class='label success'>string</span>  The name of the person to greet.</li><li><span class='label notice'>owner</span> of type <span class='label success'>string</span>  The name of the person to greet.</li><li><span class='label notice'>project</span> of type <span class='label success'>string</span>  The name of the person to greet.</li></ul>
+                
+                
+              </ul>
+              <h4>Response example</h4>
+              <p><code>{"username":"string","owner":"string","project":"string"}</code></p>
+            
+          </div>
+
+        </div>
+        <hr>
+      
+
+      <footer>
+        <p>&copy; You 2012</p>
+      </footer>
+      </div>
+    </div>
+
+  </body>
+</html>

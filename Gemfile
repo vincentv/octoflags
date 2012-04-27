@@ -1,16 +1,24 @@
 source "http://rubygems.org"
 
-gem 'activemodel', "~> 3.1"
-gem 'mongo_mapper'
-gem 'bson_ext'
+# web engine
+gem "sinatra", "1.3.2"
+# service DSL
+gem "weasel_diesel", "1.0.0"
+#
+gem 'mongoid', "~> 2.4"
+gem 'bson_ext', "~> 1.5"
 
 gem 'rest-client'
 
-gem "sinatra"
-gem 'rake'
+if ENV['RACK_ENV'] != "production"
+  gem "rack-test", "0.6.1"
+  gem "foreman"
+  gem "puma"
+  gem "minitest"
+  gem "guard-puma"
+  gem "guard-minitest"
+  gem "launchy"
+  gem "rake"
 
-group :test do
-  gem "simplecov"
-  gem "rack-test"
-  gem "factory_girl"
+  gem 'shotgun'
 end
