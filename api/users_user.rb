@@ -8,8 +8,16 @@ describe_service "users/:username" do |service|
 
   # OUTPUT
   service.response do |response|
-    response.object do |obj|
-      obj.string :username, :doc => "The name of the person to greet."
+    response.element do |obj|
+      obj.attribute :login     => :string, :doc => "The name of the person to greet."
+      obj.attribute :location  => :string, :doc => "The location of the person."
+
+      obj.array :flags do |flag|
+          flag.attribute :name        => :string, :doc => "The name of the person to greet."
+          flag.attribute :description => :string, :doc => "The name of the person to greet."
+          flag.attribute :owner       => :string, :doc => "The name of the person to greet."
+          flag.attribute :language    => :string, :doc => "The name of the person to greet."
+      end
     end
   end
 
@@ -24,23 +32,7 @@ describe_service "users/:username" do |service|
   service.implementation do
     u = User.first(conditions: {login: params[:username]})
 
-    {
-      :login => u.login,
-      :location => u.location,
-      :flags => [
-        {"id" => 1,
-          "admin" => true,
-          "name" => "Heidi",
-          "state" => "retired",
-          "last_login_at" => "2011-09-22T22:46:35-07:00"
-      },
-        {"id" => 2,
-          "admin" => false,
-          "name" => "Giana",
-          "state" => "playing",
-          "last_login_at" => "2011-09-22T22:46:35-07:00"
-      }]
-    }.to_json
+    return UserPresenter.new( u ).to_json
   end
 
 end

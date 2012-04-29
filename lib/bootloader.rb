@@ -14,6 +14,7 @@ module Bootloader
       load_environment
       set_loadpath
       load_lib_dependencies
+      load_presenters
       set_db_connection
       load_models unless ENV['DONT_CONNECT']
       load_apis
@@ -31,6 +32,7 @@ module Bootloader
       load_environment
       set_loadpath
       load_lib_dependencies
+      load_presenters
       set_db_connection
       load_models unless ENV['DONT_CONNECT']
       @booted =  true
@@ -82,6 +84,12 @@ module Bootloader
     require 'mongoid'
     require 'base64'
     require 'digest/md5'
+  end
+
+  def load_presenters
+    Dir.glob(File.join(ROOT, "lib", 'presenters', "*.rb")).each do |model|
+      require model
+    end
   end
 
   def set_db_connection
