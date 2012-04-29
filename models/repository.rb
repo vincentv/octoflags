@@ -14,13 +14,7 @@ class Repository
 
   embeds_one :owner
 
-  index(
-    [
-      [ :owner, Mongo::ASCENDING ],
-      [ :name, Mongo::ASCENDING ]
-  ],
-    unique: true
-  )
+  index({ owner: 1, name: 1 }, { unique: true })
 
   def flag
     @marked = @marked.next

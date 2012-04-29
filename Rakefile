@@ -1,6 +1,11 @@
 require 'rbconfig'
 require 'rake/testtask'
-require File.join(File.dirname(__FILE__), 'lib', 'bootloader')
+require 'rubygems'
+require 'bundler'
+Bundler.setup
+require 'wd_sinatra/app_loader'
+
+root = File.expand_path(File.dirname(__FILE__))
 
 Rake::TestTask.new do |t|
   t.libs << "."
@@ -13,23 +18,15 @@ task :default => :test
 # boot the app
 task :setup_app do
   ENV['DONT_CONNECT'] = 'true'
-  Bootloader.start
+  WDSinatra::AppLoader.server(root)
 end
 
 task :environment do
   ENV['DONT_CONNECT'] = nil
-  Bootloader.start
+  WDSinatra::AppLoader.server(root)
 end
 
-desc "Run the test suite by resting the DB first"
-task :clean_test_suite do
-  ENV['RACK_ENV'] ||= 'test'
-  Rake::Task["db:drop"].invoke
-  Rake::Task["db:create"].invoke
-  Rake::Task["db:setup"].invoke
-  Rake::Task["test"].invoke
+WDSinatra::AppLoader.set_loadpath(root)
+Dir.glob("lib/tasks/**/*.rake").each do |task_file|
+  load task_file
 end
-
-Bootloader.set_loadpath
-load File.join('tasks', 'db.rake')
-load File.join('tasks', 'doc.rake')

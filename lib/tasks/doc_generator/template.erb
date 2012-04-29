@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootstrap, from Twitter</title>
+    <title>Weasel Diesel - API documentation</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -16,6 +16,10 @@
     <style type="text/css">
       body {
         padding-top: 60px;
+      }
+      div.api {
+        padding-top: 60px;
+        margin-top: -60px;
       }
     </style>
 
@@ -57,14 +61,46 @@
         </div>
 
         <% WSList.all.each do |api| %>
-          <div class="" id="<%= "raw-#{api.verb}-#{api.url}" %>">
+          <div class="api" id="<%= "raw-#{api.verb}-#{api.url}" %>">
             <div>
               <h2><%= api.verb.upcase %> <%= '[SSL]' if api.ssl %> /<%= api.url %></h2>
               <% if api.auth_required %>
                 <span class='label important'>Authentication required</span>
               <% end %>
               <%= "<p>#{api.doc.desc}</p>" if api.doc.desc %>
-              <%# TODO support for namespaced params %>
+              <% unless api.doc.examples.empty? %>
+                <ul>
+                  <% api.doc.examples.each do |example| %>
+                    <li><code><%= example %></code></li>
+                  <%  end %>
+                </ul>
+              <%  end %>
+
+              <h3>Input parameters description</h3>
+              <%# TODO support for nested namespaced params %>
+              <% api.params.namespaced_params.each do |params| %>
+                <div class='well'>
+                  <h4>Namespace: <span style='font-style: italic'><%= params.space_name %></span></h4>
+                  <div style='padding-left: 40px'>
+                <% [["Required", :list_required], ["Optional", :list_optional]].each do |label,rule_meth| %>
+                  <% unless params.send(rule_meth).empty? %>
+                    <h4><%= label %> Params</h4>
+                     <ul>
+                      <% params.send(rule_meth).each do |rule| %> 
+                         <li>
+                          <span class='label notice'><%= rule.name %></span> of type <span class='label success'><%= rule.options[:type] || 'String' %></span>
+                          <% if desc = (api.doc.params_doc[rule.name.to_sym] || rule.options[:doc]) %>
+                             <%= desc %>&nbsp;
+                          <% end %>
+                          </li>
+                      <% end %>
+                    </ul>
+                    <% end %>
+                  <% end %>
+                </div>
+                </div>
+              <% end %>
+
               <% [["Required", :required_rules], ["Optional", :optional_rules]].each do |label,rule_meth| %>
                 <% unless api.send(rule_meth).empty? %>
                   <h3><%= label %> Params</h3>
@@ -72,7 +108,7 @@
                     <% api.send(rule_meth).each do |rule| %> 
                       <li>
                         <span class='label notice'><%= rule.name %></span> of type <span class='label success'><%= rule.options[:type] || 'String' %></span>
-                        <% if desc = api.doc.params_doc[rule.name.to_sym] %>
+                        <% if desc = (api.doc.params_doc[rule.name.to_sym] || rule.options[:doc]) %>
                            <%= desc %>&nbsp;
                         <% end %>
                         <% if options = rule.options[:options] %>
@@ -86,20 +122,23 @@
                     </ul>
                   <% end %>
                 <% end %>
+
               </div>
 
               <div>
               <% if api.response.nodes.any? %>
                 <h3>Response description</h3>
-                <% api.response.elements.each do |el| %>
-                    <%= el.to_html %>
-                <% end %>
-                <% api.response.arrays.each do |arr| %>
-                  <%= arr.to_html %>
-                <% end %>
+                <div class='well'>
+                  <% api.response.elements.each do |el| %>
+                      <%= el.to_html %>
+                  <% end %>
+                  <% api.response.arrays.each do |arr| %>
+                    <%= arr.to_html %>
+                  <% end %>
+                </div>
               </ul>
               <h4>Response example</h4>
-              <p><code><%= api.response.to_json %></code></p>
+              <div class='well'><code><%= api.response.to_json %></code></div>
             <% end %>
           </div>
 

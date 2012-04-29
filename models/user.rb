@@ -14,7 +14,7 @@ class User
   validates_presence_of :login
   validates_uniqueness_of :login
 
-  index :login
+  index({ login: 1}, { unique: true })
 
   def flag ( repository )
     repositories << repository unless repositories.include? repository

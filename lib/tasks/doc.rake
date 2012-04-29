@@ -1,22 +1,20 @@
 namespace :doc do
   desc "Generate documentation for the web services"
   task :services do
-    require "launchy"
-    
     ENV['DONT_CONNECT'] = 'true'
-    ENV['NO_ROUTE_PRINT'] = 'true'
-    require File.expand_path('../../lib/bootloader', File.dirname(__FILE__))
-    Bootloader.start
+    ENV['DONT_PRINT_ROUTES'] = 'true'
+    require 'wd_sinatra/app_loader'
+    root = File.expand_path("../..", File.dirname(__FILE__))
+    WDSinatra::AppLoader.server(root)
     LOGGER.level = Logger::FATAL
 
     require 'fileutils'
-    destination = File.join(File.dirname(__FILE__), '..', '..', 'doc')
+    destination = File.join(root, 'doc')
     FileUtils.mkdir_p(destination) unless File.exist?(destination)
     copy_assets(destination)
-
     File.open("#{destination}/index.html", "w"){|f| f << template.result(binding)}
-
-    Launchy.open("#{destination}/index.html")
+    puts "Documentation available there: #{destination}/index.html"
+    `open #{destination}/index.html` if RUBY_PLATFORM =~ /darwin/ && !ENV['DONT_OPEN']
   end
 
   def template

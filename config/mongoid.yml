@@ -1,6 +1,6 @@
 development:
-  database: octoflags_development
-
-test:
-  database: echo_test
-
+  sessions:
+    default:
+      database: octoflags_development
+      hosts:
+        - localhost:27017

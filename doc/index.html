@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootstrap, from Twitter</title>
+    <title>Weasel Diesel - API documentation</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -16,6 +16,10 @@
     <style type="text/css">
       body {
         padding-top: 60px;
+      }
+      div.api {
+        padding-top: 60px;
+        margin-top: -60px;
       }
     </style>
 
@@ -45,6 +49,10 @@
           <h5>Available APIs</h5>
           <ul>
             
+              <li><a href="#raw-get-hello_world">hello_world [GET]</a></li>
+            
+              <li><a href="#raw-post-users/:username">users/:username [POST]</a></li>
+            
               <li><a href="#raw-get-users/:username">users/:username [GET]</a></li>
             
               <li><a href="#raw-get-users/:username/flagged">users/:username/flagged [GET]</a></li>
@@ -63,12 +71,82 @@
         </div>
 
         
-          <div class="" id="raw-get-users/:username">
+          <div class="api" id="raw-get-hello_world">
             <div>
-              <h2>GET  /users/:username</h2>
+              <h2>GET  /hello_world</h2>
               
               <p>This service provides a simple hello world implementation example.</p>
               
+                <ul>
+                  
+                    <li><code><code>curl -I 'http://localhost:9292/hello_world?name=Matt'</code></code></li>
+                  
+                </ul>
+              
+
+              <h3>Input parameters description</h3>
+              
+              
+
+              
+                
+                
+                
+                  <h3>Optional Params</h3>
+                  <ul>
+                     
+                      <li>
+                        <span class='label notice'>name</span> of type <span class='label success'>string</span>
+                        
+                           The name of the person to greet.&nbsp;
+                        
+                        
+                        
+                          Default Value:  <span class='label'>World</span>&nbsp;
+                        
+                      </li>
+                      
+                    </ul>
+                  
+                
+
+              </div>
+
+              <div>
+              
+                <h3>Response description</h3>
+                <div class='well'>
+                  
+                      <h6>Properties:</h6><ul><li><span class='label notice'>message</span> of type <span class='label success'>string</span>  The greeting message sent back. Defaults to 'World'</li><li><span class='label notice'>at</span> of type <span class='label success'>datetime</span>  The timestamp of when the message was dispatched</li></ul>
+                  
+                  
+                </div>
+              </ul>
+              <h4>Response example</h4>
+              <div class='well'><code>{"message":"string","at":"datetime"}</code></div>
+            
+          </div>
+
+        </div>
+        <hr>
+      
+          <div class="api" id="raw-post-users/:username">
+            <div>
+              <h2>POST  /users/:username</h2>
+              
+              <p>This service provides a simple hello world implementation example.</p>
+              
+                <ul>
+                  
+                    <li><code><code>curl -I 'http://localhost:9292/hello_world?name=Matt'</code></code></li>
+                  
+                </ul>
+              
+
+              <h3>Input parameters description</h3>
+              
+              
+
               
                 
                   <h3>Required Params</h3>
@@ -88,30 +166,101 @@
                 
                 
                 
+
               </div>
 
               <div>
               
                 <h3>Response description</h3>
-                
-                    <h6>Properties:</h6><ul><li><span class='label notice'>username</span> of type <span class='label success'>string</span>  The name of the person to greet.</li></ul>
-                
-                
+                <div class='well'>
+                  
+                      <h6>Properties:</h6><ul><li><span class='label notice'>login</span> of type <span class='label success'>string</span>  The name of the person to greet.</li><li><span class='label notice'>location</span> of type <span class='label success'>string</span>  The location of the person.</li><li><span class='label notice'>flags</span> of type <span class='label success'>Array</span><h6>Properties of each array item:</h6><ul><li><span class='label notice'>name</span> of type <span class='label success'>string</span>  The name of the person to greet.</li><li><span class='label notice'>description</span> of type <span class='label success'>string</span>  The name of the person to greet.</li><li><span class='label notice'>owner</span> of type <span class='label success'>string</span>  The name of the person to greet.</li><li><span class='label notice'>language</span> of type <span class='label success'>string</span>  The name of the person to greet.</li></ul></li></ul>
+                  
+                  
+                </div>
               </ul>
               <h4>Response example</h4>
-              <p><code>{"username":"string"}</code></p>
+              <div class='well'><code>{"login":"string","location":"string"}</code></div>
             
           </div>
 
         </div>
         <hr>
       
-          <div class="" id="raw-get-users/:username/flagged">
+          <div class="api" id="raw-get-users/:username">
+            <div>
+              <h2>GET  /users/:username</h2>
+              
+              <p>This service provides some information of the person and projects flagged by him.</p>
+              
+                <ul>
+                  
+                    <li><code><code>curl -I 'http://localhost:9292/users/vincentv'</code></code></li>
+                  
+                </ul>
+              
+
+              <h3>Input parameters description</h3>
+              
+              
+
+              
+                
+                  <h3>Required Params</h3>
+                  <ul>
+                     
+                      <li>
+                        <span class='label notice'>username</span> of type <span class='label success'>string</span>
+                        
+                           The name of the person to find.&nbsp;
+                        
+                        
+                        
+                      </li>
+                      
+                    </ul>
+                  
+                
+                
+                
+
+              </div>
+
+              <div>
+              
+                <h3>Response description</h3>
+                <div class='well'>
+                  
+                      <h6>Properties:</h6><ul><li><span class='label notice'>login</span> of type <span class='label success'>string</span>  The nickname of the person.</li><li><span class='label notice'>location</span> of type <span class='label success'>string</span>  The location of the person.</li><li><span class='label notice'>flags</span> of type <span class='label success'>Array</span><h6>Properties of each array item:</h6><ul><li><span class='label notice'>name</span> of type <span class='label success'>string</span>  The name of the project.</li><li><span class='label notice'>description</span> of type <span class='label success'>string</span>  The description of the project.</li><li><span class='label notice'>owner</span> of type <span class='label success'>string</span>  The owner's nickname of the project.</li><li><span class='label notice'>language</span> of type <span class='label success'>string</span>  The language used in the project.</li></ul></li></ul>
+                  
+                  
+                </div>
+              </ul>
+              <h4>Response example</h4>
+              <div class='well'><code>{"login":"string","location":"string"}</code></div>
+            
+          </div>
+
+        </div>
+        <hr>
+      
+          <div class="api" id="raw-get-users/:username/flagged">
             <div>
               <h2>GET  /users/:username/flagged</h2>
               
               <p>This service provides a simple hello world implementation example.</p>
               
+                <ul>
+                  
+                    <li><code><code>curl -I 'http://localhost:9292/hello_world?name=Matt'</code></code></li>
+                  
+                </ul>
+              
+
+              <h3>Input parameters description</h3>
+              
+              
+
               
                 
                   <h3>Required Params</h3>
@@ -131,30 +280,44 @@
                 
                 
                 
+
               </div>
 
               <div>
               
                 <h3>Response description</h3>
-                
-                    <h6>Properties:</h6><ul><li><span class='label notice'>username</span> of type <span class='label success'>string</span>  The name of the person to greet.</li></ul>
-                
-                
+                <div class='well'>
+                  
+                      <h6>Properties:</h6><ul><li><span class='label notice'>username</span> of type <span class='label success'>string</span>  The name of the person to greet.</li></ul>
+                  
+                  
+                </div>
               </ul>
               <h4>Response example</h4>
-              <p><code>{"username":"string"}</code></p>
+              <div class='well'><code>{"username":"string"}</code></div>
             
           </div>
 
         </div>
         <hr>
       
-          <div class="" id="raw-delete-users/:username/flagged/:owner/:project">
+          <div class="api" id="raw-delete-users/:username/flagged/:owner/:project">
             <div>
               <h2>DELETE  /users/:username/flagged/:owner/:project</h2>
               
               <p>This service provides a simple hello world implementation example.</p>
               
+                <ul>
+                  
+                    <li><code><code>curl -I 'http://localhost:9292/hello_world?name=Matt'</code></code></li>
+                  
+                </ul>
+              
+
+              <h3>Input parameters description</h3>
+              
+              
+
               
                 
                   <h3>Required Params</h3>
@@ -190,30 +353,44 @@
                 
                 
                 
+
               </div>
 
               <div>
               
                 <h3>Response description</h3>
-                
-                    <h6>Properties:</h6><ul><li><span class='label notice'>username</span> of type <span class='label success'>string</span>  The name of the person to greet.</li><li><span class='label notice'>owner</span> of type <span class='label success'>string</span>  The name of the person to greet.</li><li><span class='label notice'>project</span> of type <span class='label success'>string</span>  The name of the person to greet.</li></ul>
-                
-                
+                <div class='well'>
+                  
+                      <h6>Properties:</h6><ul><li><span class='label notice'>username</span> of type <span class='label success'>string</span>  The name of the person to greet.</li><li><span class='label notice'>owner</span> of type <span class='label success'>string</span>  The name of the person to greet.</li><li><span class='label notice'>project</span> of type <span class='label success'>string</span>  The name of the person to greet.</li></ul>
+                  
+                  
+                </div>
               </ul>
               <h4>Response example</h4>
-              <p><code>{"username":"string","owner":"string","project":"string"}</code></p>
+              <div class='well'><code>{"username":"string","owner":"string","project":"string"}</code></div>
             
           </div>
 
         </div>
         <hr>
       
-          <div class="" id="raw-put-users/:username/flagged/:owner/:project">
+          <div class="api" id="raw-put-users/:username/flagged/:owner/:project">
             <div>
               <h2>PUT  /users/:username/flagged/:owner/:project</h2>
               
               <p>This service provides a simple hello world implementation example.</p>
               
+                <ul>
+                  
+                    <li><code><code>curl -I 'http://localhost:9292/hello_world?name=Matt'</code></code></li>
+                  
+                </ul>
+              
+
+              <h3>Input parameters description</h3>
+              
+              
+
               
                 
                   <h3>Required Params</h3>
@@ -249,18 +426,21 @@
                 
                 
                 
+
               </div>
 
               <div>
               
                 <h3>Response description</h3>
-                
-                    <h6>Properties:</h6><ul><li><span class='label notice'>username</span> of type <span class='label success'>string</span>  The name of the person to greet.</li><li><span class='label notice'>owner</span> of type <span class='label success'>string</span>  The name of the person to greet.</li><li><span class='label notice'>project</span> of type <span class='label success'>string</span>  The name of the person to greet.</li></ul>
-                
-                
+                <div class='well'>
+                  
+                      <h6>Properties:</h6><ul><li><span class='label notice'>username</span> of type <span class='label success'>string</span>  The name of the person to greet.</li><li><span class='label notice'>owner</span> of type <span class='label success'>string</span>  The name of the person to greet.</li><li><span class='label notice'>project</span> of type <span class='label success'>string</span>  The name of the person to greet.</li></ul>
+                  
+                  
+                </div>
               </ul>
               <h4>Response example</h4>
-              <p><code>{"username":"string","owner":"string","project":"string"}</code></p>
+              <div class='well'><code>{"username":"string","owner":"string","project":"string"}</code></div>
             
           </div>
 
