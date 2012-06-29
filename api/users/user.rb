@@ -33,6 +33,8 @@ describe_service "users/:username" do |service|
   service.implementation do
     u = User.where(:login => params[:username]).first
 
+    halt 404, "User not found" unless u
+
     return UserPresenter.new( u ).to_json
   end
 
